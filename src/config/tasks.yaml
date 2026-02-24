@@ -1,0 +1,86 @@
+detect_threats:
+  description: >
+    Conduct a comprehensive threat scan across global shipping lanes.
+
+    Step-by-step:
+      1. Use the news search tool to look for: port closures, dockworker strikes,
+         typhoons / hurricanes, geopolitical sanctions, and infrastructure failures
+         in major shipping regions (East Asia, South-East Asia, South Asia, Middle East,
+         Europe, Americas). Run at least 3 targeted searches.
+      2. Use the weather alert tool to check conditions at these key ports:
+         Shanghai, Busan, Ho Chi Minh City, Mumbai, Rotterdam, Los Angeles.
+      3. For every detected threat, record: affected location, threat type
+         (weather / labor / geopolitical / infrastructure), severity
+         (LOW / MEDIUM / HIGH / CRITICAL), affected shipping lanes, and
+         estimated window of impact.
+      4. Rank all threats from most to least critical.
+
+    Current year: {current_year}. Be thorough — a missed weak signal costs millions.
+  expected_output: >
+    A structured **Threat Intelligence Report** with:
+    - A numbered list of threats, each containing: location, type, severity,
+      affected shipping lanes, and estimated impact window.
+    - A priority-ranked summary (most-critical first).
+    - Coverage of at least 3 distinct regions.
+  agent: global_sentinel
+
+impact_analysis:
+  description: >
+    Using the threat report from the previous task, query the company logistics
+    database to map every exposed shipment.
+
+    Step-by-step:
+      1. For each threat location identified earlier, query shipments by that
+         region / port name to find all cargo in transit, loading, or scheduled
+         through the threatened area.
+      2. For each at-risk shipment record: Shipment ID, Supplier, Origin Port,
+         Destination Port, Status, ETA.
+      3. Flag priority: "In Transit" shipments in a threat zone are P1;
+         "Loading" shipments are P2 (can still be redirected).
+      4. Summarize total exposure: number of affected shipments, unique
+         suppliers, and which destination markets face supply gaps.
+
+    Use every database query tool at your disposal to get accurate data.
+  expected_output: >
+    A detailed **Impact Assessment** containing:
+    - A markdown table of at-risk shipments (Shipment ID | Supplier | Origin |
+      Destination | Status | ETA | Threat | Priority).
+    - Summary stats: total shipments affected, unique suppliers, most-impacted route.
+    - Priority classification for immediate rerouting vs. monitoring.
+  agent: inventory_analyst
+
+mitigation_plan:
+  description: >
+    Build a complete crisis-response package from the impact assessment.
+
+    Step-by-step:
+      1. For each at-risk shipment, use the routing tool to generate 2-3
+         alternative shipping routes. Record extra transit days, cost increase %,
+         and risk level for each alternative.
+      2. Use the delay-impact tool to quantify business impact where relevant.
+      3. Recommend the best alternative route per shipment with a one-line
+         justification.
+      4. Draft a professional email for each affected supplier that:
+         - Acknowledges the specific disruption and shipment(s) affected
+         - Requests an immediate cargo status update
+         - Proposes the recommended rerouting with new ETA
+         - Asks for confirmation within 24 hours
+         - Uses a professional, concise, firm tone
+      5. Compile everything into a single Crisis Response Report.
+  expected_output: >
+    A comprehensive **Crisis Response Report** in markdown containing:
+
+    ## Executive Summary
+    One-paragraph overview of the situation and top recommended actions.
+
+    ## Rerouting Plans
+    For each at-risk shipment: current route, threat, alternative routes table
+    (Route | Extra Days | Cost +% | Risk), and recommended action with new ETA.
+
+    ## Supplier Communications
+    Ready-to-send email for each affected supplier with Subject, To, Body, and
+    Signature blocks.
+
+    ## Risk Matrix
+    Summary table: Threat | Affected Shipments | Mitigation Status.
+  agent: mitigation_strategist
