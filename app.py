@@ -25,6 +25,30 @@ warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
 os.environ.setdefault("AGENT_MAX_ITER", "3")
 DB_PATH = Path("src/mcp_servers/logistics.db")
 
+
+def hydrate_env_from_streamlit_secrets() -> None:
+    """Load deployment secrets into env vars when running on Streamlit Cloud."""
+    secret_keys = [
+        "OPENROUTER_API_KEY",
+        "SERPER_API_KEY",
+        "OPENWEATHER_API_KEY",
+        "SERPAPI_API_KEY",
+        "EMAIL",
+        "EMAIL_PASSWORD",
+    ]
+    for key in secret_keys:
+        if os.getenv(key):
+            continue
+        try:
+            value = st.secrets.get(key)
+        except Exception:
+            value = None
+        if value:
+            os.environ[key] = str(value)
+
+
+hydrate_env_from_streamlit_secrets()
+
 # ── Page config ───────────────────────────────────────────────────────
 st.set_page_config(
     page_title="MASCRISS-AI",
