@@ -1,20 +1,6 @@
-
-![CI](https://github.com/your-username/MASCRISS-AI/actions/workflows/ci.yml/badge.svg)
 # MASCRISS-AI
-## Required API Keys
-
-MASCRISS-AI uses several APIs for live data. You can run with simulated data, but for best results, add your own keys:
-
-| Variable              | Purpose                | Where to get it                |
-|-----------------------|------------------------|--------------------------------|
-| OPENROUTER_API_KEY    | LLM (DeepSeek V3)      | https://openrouter.ai/         |
-| SERPER_API_KEY        | News (Serper)          | https://serper.dev/            |
-| OPENWEATHER_API_KEY   | Weather                | https://openweathermap.org/api |
-| SERPAPI_API_KEY       | Maps/routing           | https://serpapi.com/           |
-| EMAIL                 | Gmail (auto-mail)      | https://gmail.com/             |
-| EMAIL_PASSWORD        | Gmail app password     | Google Account > Security      |
-
-You can enter/update these in the Streamlit sidebar UI. They are also read from `.env`.
+### Wanna Try it ? 
+Click - [Streamlit](https://mascriss-ai-01.streamlit.app/)
 
 **Multi-Agent Supply Chain Risk Intelligence and Surveillance Sentinel AI**
 
@@ -114,6 +100,20 @@ venv\Scripts\activate        # Windows
 pip install -e .
 pip install litellm
 ```
+## Required API Keys
+
+MASCRISS-AI uses several APIs for live data. You can run with simulated data, but for best results, add your own keys:
+
+| Variable              | Purpose                | Where to get it                |
+|-----------------------|------------------------|--------------------------------|
+| OPENROUTER_API_KEY    | LLM (DeepSeek V3)      | https://openrouter.ai/         |
+| SERPER_API_KEY        | News (Serper)          | https://serper.dev/            |
+| OPENWEATHER_API_KEY   | Weather                | https://openweathermap.org/api |
+| SERPAPI_API_KEY       | Maps/routing           | https://serpapi.com/           |
+| EMAIL                 | Gmail (auto-mail)      | https://gmail.com/             |
+| EMAIL_PASSWORD        | Gmail app password     | Google Account > Security      |
+
+You can enter/update these in the Streamlit sidebar UI. They are also read from `.env`.
 
 ### 3. Configure environment variables
 
