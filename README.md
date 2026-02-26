@@ -1,4 +1,20 @@
+
+![CI](https://github.com/your-username/MASCRISS-AI/actions/workflows/ci.yml/badge.svg)
 # MASCRISS-AI
+## Required API Keys
+
+MASCRISS-AI uses several APIs for live data. You can run with simulated data, but for best results, add your own keys:
+
+| Variable              | Purpose                | Where to get it                |
+|-----------------------|------------------------|--------------------------------|
+| OPENROUTER_API_KEY    | LLM (DeepSeek V3)      | https://openrouter.ai/         |
+| SERPER_API_KEY        | News (Serper)          | https://serper.dev/            |
+| OPENWEATHER_API_KEY   | Weather                | https://openweathermap.org/api |
+| SERPAPI_API_KEY       | Maps/routing           | https://serpapi.com/           |
+| EMAIL                 | Gmail (auto-mail)      | https://gmail.com/             |
+| EMAIL_PASSWORD        | Gmail app password     | Google Account > Security      |
+
+You can enter/update these in the Streamlit sidebar UI. They are also read from `.env`.
 
 **Multi-Agent Supply Chain Risk Intelligence and Surveillance Sentinel AI**
 
@@ -29,7 +45,8 @@ The final output is a complete Crisis Response Report saved to `output/crisis_re
 
 ```
 MASCRISS-AI/
-  main.py                          # Entry point
+  main.py                          # CLI entry point
+  app.py                           # Streamlit dashboard (streaming + auto-mail)
   pyproject.toml                   # Dependencies and build config
   Dockerfile                       # Container build
   src/
@@ -119,6 +136,19 @@ python main.py
 ```
 
 Output is saved to `output/crisis_report.md`.
+
+
+### Streamlit Dashboard
+
+```bash
+streamlit run app.py
+```
+
+Features:
+- **Streaming output** — watch each agent think in real-time
+- **Auto-email** — enter a recipient address in the sidebar; the crisis report is sent automatically via Gmail SMTP after generation
+- **Download** — export the report as a `.md` file
+- **API key entry** — update your API keys live in the sidebar if agent fails
 
 ### Docker
 

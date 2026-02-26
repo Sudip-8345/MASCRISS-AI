@@ -3,7 +3,8 @@ Supply Chain Crisis Sentinel — entry point.
 
 Usage:
     python main.py          # run the full crisis-detection pipeline
-    python main.py train 3  # train for 3 iterations
+    python main.py train    # train for 3 iterations (default)
+    python main.py train 5  # train for custom iterations
 """
 
 import sys
@@ -30,9 +31,11 @@ def train() -> None:
     from src.crew import SupplyChainCrew
 
     inputs = {"current_year": str(datetime.now().year)}
+    n_iterations = int(sys.argv[2]) if len(sys.argv) > 2 else 3
+    filename = sys.argv[3] if len(sys.argv) > 3 else "trained_crew.pkl"
     SupplyChainCrew().crew().train(
-        n_iterations=int(sys.argv[2]),
-        filename=sys.argv[3] if len(sys.argv) > 3 else "trained_crew.pkl",
+        n_iterations=n_iterations,
+        filename=filename,
         inputs=inputs,
     )
 

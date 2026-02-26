@@ -10,6 +10,8 @@ from crewai import LLM
 from src.tools.news_tool import NewsScanTool
 from src.tools.weather_tool import WeatherAlertTool
 
+DEFAULT_AGENT_MAX_ITER = int(os.getenv("AGENT_MAX_ITER", "3"))
+
 
 def _llm():
     """DeepSeek V3 via OpenRouter — completely free, high limits, great tool calling."""
@@ -36,6 +38,7 @@ class SupplyChainCrew:
             config=self.agents_config["global_sentinel"],
             tools=[NewsScanTool(), WeatherAlertTool()],
             llm=_llm(),
+            max_iter=DEFAULT_AGENT_MAX_ITER,
             verbose=True,
         )
 
@@ -49,6 +52,7 @@ class SupplyChainCrew:
             config=self.agents_config["inventory_analyst"],
             mcps=[logistics_db],
             llm=_llm(),
+            max_iter=DEFAULT_AGENT_MAX_ITER,
             verbose=True,
         )
 
@@ -62,6 +66,7 @@ class SupplyChainCrew:
             config=self.agents_config["mitigation_strategist"],
             mcps=[maps_router],
             llm=_llm(),
+            max_iter=DEFAULT_AGENT_MAX_ITER,
             verbose=True,
         )
 
